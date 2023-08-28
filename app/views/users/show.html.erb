@@ -1,2 +1,8 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+
+<% if @user.imageattached? %>
+  <%= image_tag @user.image, size: "100x100" %>
+<% else %>
+  <%= image_tag 'no_image', size: "100x100" %>
+<% end %>
