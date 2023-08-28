@@ -1,8 +1,41 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'books/list',  user: @user, book: @book %>
+    </div>
 
-<% if @user.imageattached? %>
-  <%= image_tag @user.image, size: "100x100" %>
-<% else %>
-  <%= image_tag 'no_image', size: "100x100" %>
-<% end %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+
+      <table class="table table-hover table-inverse">
+
+        <thead>
+          <tr>
+            <th></th>
+            <th><p><strong>Title</strong></p></th>
+            <th><p><strong>Opinion</strong></p></th>
+          </tr>
+        </thead>
+
+        <% @books.each do |book| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to user_path(@user.id) do %>
+                  <%= image_tag book.user.get_image(100,100) %>
+                <% end %>
+              </td>
+
+              <td><%= link_to book.title, book_path(book) %></td>
+
+              <td><%= book.body %></td>
+            </tr>
+          </tbody>
+        <% end %>
+
+      </table>
+
+    </div>
+
+  </div>
+</div>
